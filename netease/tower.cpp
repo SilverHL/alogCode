@@ -2,60 +2,34 @@
 
 using namespace std;
 
-struct Node
-{
-    int high;
-    int index;
-};
-
-bool cmp(Node n1, Node n2)
-{
-    return n1.high < n2.high;
-}
-
 int main()
 {
-    int n, k;
-    Node high[101];
-    int mx = 0, mn = INT_MAX;
-    int total = 0;
+    int n, k, m = 0;
     cin >> n >> k;
-    for (int i = 0; i < n; i++) 
+    set<pair<int, int> >s;
+    for (int i = 1; i <= n; i++) 
     {
-        cin >> high[i].high;
-        high[i].index = i+1;
-        total += high[i].high;
+        int x;
+        cin >> x;
+        s.emplace(x, i);
     }
 
-    sort(high, high+n, cmp);
-    
-    int i = 0, j = n-1;
-    int avge = total / n;
-
-    if (total % n == 0 && k >= total / n)
+    vector<pair<int, int> >v;
+    while (k && s.size() > 1 && s.rbegin()->first - s.begin()->first > 1)
     {
-        cout << 0 << " " << total/n << endl;
-        k = total / n;
-    }
-    else 
-    {
-        cout << total - avge*n << " " << k << endl;
-    }
-    while (k && i <= j)
-    {
-        while (high[i].high < avge && high[j].high > avge)
-        {
-            high[i].high++;
-            high[j].high--;
-            --k;
-            cout << high[j].index << " " << high[i].index << endl;
-        }
-
-        if (high[i].high == avge)
-            i++;
-        if (high[j].high == avge)
-            j--;
+        auto a = *s.begin(), b = *s.rbegin();
+        s.erase(a), s.erase(b);
+        k--;
+        a.first++;
+        b.first--;
+        s.insert(a);
+        s.insert(b);
+        v.emplace_back(b.second, a.second);
 
     }
+
+    cout << s.rbegin()->first - s.begin()->first << " " << v.size() << endl;
+    for (auto p : v)
+        cout << p.first << " " << p.second <<endl;
     return 0;
 }

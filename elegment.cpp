@@ -33,6 +33,5 @@ int main()
         y_ = r * sin((i * PI / 180));
         ans = min(ans, dis(x, y, x_, y_) + dis(xx, yy, -x_, -y_));
     }
-
     cout << ans;
 }

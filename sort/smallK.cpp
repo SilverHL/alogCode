@@ -24,7 +24,7 @@ int getPartition(int start, int end, vector<int>& num)
 
 }
 
-vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
+int GetLeastNumbers_Solution(vector<int> input, int k) {
     int start = 0;
     int end = input.size()-1;
     int index = getPartition(start, end, input);
@@ -39,11 +39,7 @@ vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
         }
     }
 
-    vector<int> res;
-    for (int i = 0; i < k; i++) 
-        res.push_back(input[i]);
-
-    return res;
+    return input[k-1];
 
 }
 
@@ -51,8 +47,8 @@ int main()
 {
     vector<int> input = {4,5,1,6,2,7,3,8};
 
-    vector<int> res = GetLeastNumbers_Solution(input, 4);
+    int res = GetLeastNumbers_Solution(input, 4);
+    cout << res;
 
-    for (int i = 0; i < res.size(); i++) 
-        cout << res[i] << endl;
+
 }

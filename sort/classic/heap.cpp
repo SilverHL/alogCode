@@ -1,6 +1,6 @@
 /***
  * 堆排 
- * 时间复杂度O(nlogn) 空间复杂度 O(1) 
+ * 时间最好以及最坏复杂度都为O(nlogn) 空间复杂度 O(1) 
  * 不稳定 
  *
  * 如果角标从 0 开始 左子树 位置为 2n+1 右子树为2n+2;
@@ -44,4 +44,9 @@ void heap_sort(vector<int>& vec)
         swap(vec[i], vec[0]);
         heap_adjust(vec, 0, i-1);
     }
+}
+
+int main()
+{
+    
 }
